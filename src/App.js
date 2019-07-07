@@ -7,7 +7,7 @@ function App() {
     <div className="App container">
 
     <div className='jumbotron'>
-        <h1>UST Global - Employee Shift Log</h1>
+        <h1>Employee Shift Log</h1>
       </div>
       <div>
         <UploadData />
