@@ -9,6 +9,7 @@ const lodash = require('lodash');
 class UploadData extends React.Component{
     constructor (props){
         super(props);
+        const date = new Date();
         this.state = {
             files: {
                 summary: {},
@@ -19,8 +20,8 @@ class UploadData extends React.Component{
             data: [],
             leaveRecords: [],
             employees: {},
-            year: new Date().getFullYear(),
-            month: 0,
+            year: date.getFullYear(),
+            month: date.getMonth(),
             template: [],
             hasLog: false,
             hasLeave: false,
