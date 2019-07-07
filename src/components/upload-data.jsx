@@ -203,11 +203,12 @@ class UploadData extends React.Component{
                 hasLeave: false,
                 hasWfh: false,
                 hasHoliday: false,
+                isMonthSet: false
             };           
             date.setDate(date.getDate()+1);
         } while (date.getMonth() === Number(month))
 
-        this.setState({...this.state, template: template}, ()=>{
+        this.setState({...this.state, template: template, isMonthSet: true}, ()=>{
             this.setState({loading: false});
 
         });
@@ -219,28 +220,29 @@ class UploadData extends React.Component{
             <div className='col-12'>
             <h2>Upload Data: </h2>
             </div>
-            <div className='col-12'>
-                <div>
-                    <label>Set month and year:</label>
-                </div>
-                <div>
-                    <select id="month" value={this.state.month} onChange={e=>this.setState({...this.state, month: e.target.value })}>
-                        {constants.MONTHS.map((month, index)=>
-                            <option value={index} key={index}>{month}</option>
-                        )}
-                    </select>
+            {!this.state.isMonthSet &&
+                <div className='col-12'>
+                    <div>
+                        <label>Set month and year:</label>
+                    </div>
+                    <div>
+                        <select id="month" value={this.state.month} onChange={e=>this.setState({...this.state, month: e.target.value })}>
+                            {constants.MONTHS.map((month, index)=>
+                                <option value={index} key={index}>{month}</option>
+                            )}
+                        </select>
 
-                    <input type='number' placeholder='year' value={this.state.year} onChange={e=>this.setState(this.setState({...this.state, year: e.value}))} />
-                    <button onClick={this.handleSetMonth.bind(this)}>set month</button>
+                        <input type='number' placeholder='year' value={this.state.year} onChange={e=>this.setState(this.setState({...this.state, year: e.value}))} />
+                        <button onClick={this.handleSetMonth.bind(this)}>set month</button>
+                    </div>
                 </div>
-            </div>
-
+            }
             <div className='col-6'>
                 <div>
                     <label>Select enty log file:</label>
                 </div>
                 <div>
-                    <input type='file' id='summary'  onChange={this.handleFile.bind(this)} />
+                    <input type='file' id='summary'  onChange={this.handleFile.bind(this)} disabled={!this.state.isMonthSet} />
                 </div>
             </div>
 
@@ -249,7 +251,7 @@ class UploadData extends React.Component{
                     <label>Select filed leaves file:</label>
                 </div>
                 <div>
-                    <input type='file' id='leaves'  onChange={this.handleFile.bind(this)} />
+                    <input type='file' id='leaves'  onChange={this.handleFile.bind(this)} disabled={!this.state.isMonthSet} />
                 </div>
             </div>
 
@@ -258,7 +260,7 @@ class UploadData extends React.Component{
                     <label>Select Work from home file:</label>
                 </div>
                 <div>
-                    <input type='file' id='wfh'  onChange={this.handleFile.bind(this)} />
+                    <input type='file' id='wfh'  onChange={this.handleFile.bind(this)} disabled={!this.state.isMonthSet} />
                 </div>
             </div>
 
@@ -268,7 +270,7 @@ class UploadData extends React.Component{
                     <label>Select holidays file:</label>
                 </div>
                 <div>
-                    <input type='file' id='holidays'  onChange={this.handleFile.bind(this)} />
+                    <input type='file' id='holidays'  onChange={this.handleFile.bind(this)} disabled={!this.state.isMonthSet} />
                 </div>
             
             </div>
