@@ -39,25 +39,25 @@ class UploadData extends React.Component{
             header: true,
             dynamicTyping: true,
             complete: (results, file)=>{                
-        
                 const filtered = [];
                 results.data.forEach((data,index)=>{
                     
-                    const date = new Date(data.date);
-                    const uid = data.uid;
+                    const date = new Date(data.Date);
+                    const uid = data.UID;
+
                     if (date.getMonth() !== Number(this.state.month)) return;
                     
                     let item = filtered[uid] 
                     
                     if (!item){
-                        filtered[uid] = {uid:data.uid, name: data.name, entryLog: [...this.state.template]};
+                        filtered[uid] = {uid:data["UID"], name: data["Employee Name"], entryLog: [...this.state.template]};
                         item = filtered[uid];
                     }
-                    item.entryLog[date.getDate()] ={...item.entryLog[date.getDate()], totalHours:  data.hours, hasLog: data.hours > 0};
-
+                    item.entryLog[date.getDate()] ={...item.entryLog[date.getDate()], totalHours:  data["Hours Worked"], hasLog: data["Hours Worked"] > 0};
                 });
 
 
+                console.log('employees', filtered);
                 this.setState({...this.state, data: results.data, employees: filtered}, ()=>{
                     this.setState({loading: false})
                 });
