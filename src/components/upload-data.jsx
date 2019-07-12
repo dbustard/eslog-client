@@ -139,15 +139,15 @@ class UploadData extends React.Component{
                     const holiday = new Date(data["Holidays"]);
                     console.log('holiday', data);
                     if (holiday && data["Holidays"]){
+
                         const description = data["Description"] ? data["Description"] : "Holiday";
                         const date = holiday.getDate();
                         
                         employees.forEach(employee =>{
-                            
                             if (employees[employee.uid].entryLog[date]){
                                 console.log('description', description);
                                 employees[employee.uid].entryLog[date].holiday = description;
-                                employees[employee.uid].entryLog[date].hasHoliday = description;
+                                employees[employee.uid].entryLog[date].hasHoliday = true;
                             }
 
                         });
