@@ -1,18 +1,26 @@
 import React from 'react';
 import UploadData from './components/upload-data';
+import ListData from './components/list-data';
+import Loader from './components/loader';
+import { Provider } from 'react-redux';
+import store from './stores';
 import './App.css';
 
 function App() {
   return (
-    <div className="App container">
+    <Provider store={store}>
+      <Loader  />
+      <div className="App container">
 
-    <div className='jumbotron'>
-        <h1>Employee Shift Log</h1>
+      <div className='jumbotron'>
+          <h1>Employee Shift Log</h1>
+        </div>
+        <div>
+          <UploadData />
+          <ListData />
+        </div>
       </div>
-      <div>
-        <UploadData />
-      </div>
-    </div>
+    </Provider>
   );
 }
 

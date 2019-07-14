@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import {ClipLoader} from 'react-spinners';
 
 const Loader = ({loading}) => 
@@ -10,4 +11,9 @@ const Loader = ({loading}) =>
     </div>
     : null
 
-export default Loader;
+const mapStateToProps = state => {
+    return {
+        loading: state.ui.loading
+    };
+}
+export default connect(mapStateToProps)(Loader);
