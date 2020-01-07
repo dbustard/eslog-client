@@ -278,7 +278,7 @@ class UploadData extends React.Component{
                             )}
                         </select>
 
-                        <input type='number' placeholder='year' value={this.state.year} onChange={e=>this.setState(this.setState({...this.state, year: e.value}))} />
+                        <input type='number' placeholder='year' value={this.state.year} onChange={e=>this.setState(this.setState({...this.state, year: e.target.value}))} />
                         <button onClick={this.handleSetMonth.bind(this)}>set month</button>
                     </div>
                 </div>
